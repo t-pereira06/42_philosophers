@@ -6,12 +6,21 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/04/27 14:32:24 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:37:07 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+
+void	print_rules(t_rules *rules)
+{
+	printf("Number of philosophers: %d\n", rules->num_p);
+	printf("Time to die: %d\n", rules->ttd);
+	printf("Time to eat: %d\n", rules->tte);
+	printf("Time to sleep: %d\n", rules->tts);
+	printf("Times each must eat: %d\n", rules->tme);
+}
 void	check_number(char **argv)
 {
 	int	i;
@@ -25,7 +34,7 @@ void	check_number(char **argv)
 		{
 			if (!ft_isdigit(argv[i][j]))
 			{
-				write (1, "Error\n", 6);
+				write (1, "Not all values are numbers!\n", 29);
 				exit (0);
 			}
 			j++;
@@ -34,7 +43,7 @@ void	check_number(char **argv)
 	}
 }
 
-void	initialize_stacks(t_rules *rules, int argc, char **argv)
+void	initialize_struct(t_rules *rules, int argc, char **argv)
 {
 	rules->num_p = ft_atoi(argv[1]);
 	rules->ttd = ft_atoi(argv[2]);
@@ -53,13 +62,18 @@ void	check_args(int argc, char **argv)
 		check_number(argv);
 	else
 	{
-		write(1, "Error\n", 6);
+		write(1, "Check number of arguments!\n", 28);
 		exit(0);
 	}
 }
 
 int	main(int argc, char **argv)
 {
+	t_rules	*rules;
+	pthread_mutex_t	*forks;
+
 	check_args(argc, argv);
-	//initialize_stuct();
+	rules = malloc(sizeof(rules));
+	initialize_struct(rules, argc, argv);
+	forks = start_forks();
 }
