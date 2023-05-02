@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:35:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/02 16:52:44 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:03:50 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ typedef struct rules
 //libft_functions.c
 int	ft_isdigit(int a);
 int	ft_atoi(char *str);
+
+//creating.c
+pthread_mutex_t	*create_forks(t_rules *rules);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/02 11:37:07 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:13:23 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	print_rules(t_rules *rules)
 	printf("Time to sleep: %d\n", rules->tts);
 	printf("Times each must eat: %d\n", rules->tme);
 }
+
+//Check if all the arguments are numbers
 void	check_number(char **argv)
 {
 	int	i;
@@ -43,6 +45,7 @@ void	check_number(char **argv)
 	}
 }
 
+//Start stack with the arguments
 void	initialize_struct(t_rules *rules, int argc, char **argv)
 {
 	rules->num_p = ft_atoi(argv[1]);
@@ -55,7 +58,7 @@ void	initialize_struct(t_rules *rules, int argc, char **argv)
 		rules->tme = 0;
 }
 
-
+//Check how many are passed to the function
 void	check_args(int argc, char **argv)
 {
 	if (argc == 5 || argc == 6)
@@ -75,5 +78,5 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	rules = malloc(sizeof(rules));
 	initialize_struct(rules, argc, argv);
-	forks = start_forks();
+	forks = create_forks(rules);
 }

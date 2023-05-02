@@ -6,12 +6,13 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/02 16:56:33 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:11:35 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+//Creates the forks for philosophers to eat
 pthread_mutex_t	*create_forks(t_rules *rules)
 {
 	pthread_mutex_t	*forks;
@@ -25,5 +26,5 @@ pthread_mutex_t	*create_forks(t_rules *rules)
 			write(1, "Couldn't start mutex!", 22);
 		i++;
 	}
-	return(forks);
+	return (forks);
 }
