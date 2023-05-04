@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/02 17:33:48 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:49:38 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ void	check_args(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_rules	*rules;
-	pthread_mutex_t	*forks;
 
 	check_args(argc, argv);
 	rules = malloc(sizeof(rules));
 	initialize_struct(rules, argc, argv);
-	forks = create_forks(rules);
+	create_philos_and_forks(rules);
 }
