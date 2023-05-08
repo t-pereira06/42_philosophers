@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:26:01 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/04 14:47:31 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:47:34 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 //Function to get time from computer
 long long	gettime(void)
 {
-	struct timeval time;
+	struct timeval	time;
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
@@ -33,4 +34,19 @@ void	print_message(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+/*Function to print a output in the terminal like
+the subject asks*/
+void	print_terminal(t_philo *philo, char *message)
+{
+	long long	time;
+
+	if (philo->rules->phi_dead > 0
+		|| philo->rules->count_eat == philo->rules->num_p)
+		return ;
+	time = get_time() - philo->rules->time_start;
+	pthread_mutex_lock(&philo->rules->print);
+	printf("%lld %d %s", time, philo->id, message);
+	pthread_mutex_unlock(&philo->rules->print);
 }

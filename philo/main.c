@@ -6,12 +6,11 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/04 14:49:38 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:32:17 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
 
 void	print_rules(t_rules *rules)
 {
@@ -19,7 +18,7 @@ void	print_rules(t_rules *rules)
 	printf("Time to die: %d\n", rules->ttd);
 	printf("Time to eat: %d\n", rules->tte);
 	printf("Time to sleep: %d\n", rules->tts);
-	printf("Times each must eat: %d\n", rules->tme);
+	printf("Times each must eat: %d\n", rules->t_each_must_eat);
 }
 
 //Check if all the arguments are numbers
@@ -52,10 +51,13 @@ void	initialize_struct(t_rules *rules, int argc, char **argv)
 	rules->ttd = ft_atoi(argv[2]);
 	rules->tte = ft_atoi(argv[3]);
 	rules->tts = ft_atoi(argv[4]);
+	rules->time_start = get_time();
+	rules->count_eat = 0;
+	rules->phi_dead = 0;
 	if (argc == 6)
-		rules->tme = ft_atoi(argv[5]);
+		rules->t_each_must_eat = ft_atoi(argv[5]);
 	else
-		rules->tme = 0;
+		rules->t_each_must_eat = 0;
 }
 
 //Check how many are passed to the function

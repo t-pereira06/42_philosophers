@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/04 13:56:53 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:47:29 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ pthread_mutex_t	*forks(t_rules *rules)
 
 	i = 0;
 	forks = malloc(sizeof(pthread_mutex_t) * rules->num_p);
-	while(i < rules->num_p)
+	while (i < rules->num_p)
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;

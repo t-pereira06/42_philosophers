@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:35:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/04 14:48:29 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:10:49 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,7 @@
 #include <pthread.h>
 # include <sys/time.h>
 
-//Error
-# define ALLOC_ERR_1 "Eror while allocating ID's"
-# define ALLOC_ERR_3 "Eror while allocating philos"
-# define ALLOC_ERR_2 "Eror while allocating forks"
-//	Input errors
-# define ERR_IN_1 "Invalid input character"
-# define ERR_IN_2 "Invalid input values"
-//	Thread errors
-# define TH_ERR "Error creating threads"
-# define JOIN_ERR "Error joining threads"
-# define INIT_ERR_1 "Error initing forks"
-//	Philo errors
+//	Philo outputs
 # define TAKE_FORK "has taken a fork 🍴"
 # define THINKING "is thinking 🤔"
 # define SLEEPING "is sleeping 💤"
@@ -43,6 +32,7 @@ typedef	struct	philo
 	int				id;
 	long long		last_meal;
 	int				times_eaten;
+	pthread_mutex_t	*hold_death;
 	pthread_t		philo;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
@@ -56,7 +46,11 @@ typedef struct rules
 	int	ttd;
 	int	tte;
 	int	tts;
-	int	tme;
+	int	t_each_must_eat;
+	int	time_start;
+	int	count_eat;
+	int	phi_dead;
+	pthread_mutex_t	print;
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }				t_rules;
@@ -74,6 +68,7 @@ void			create_philos_and_forks(t_rules *rules);
 //utils.c
 long long	gettime(void);
 void	print_message(char *message, int fd);
+void	print_terminal(t_philo *philo, char *message);
 
 #endif
 
