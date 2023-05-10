@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:35:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/08 12:10:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:57:45 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct rules
 	int	count_eat;
 	int	phi_dead;
 	pthread_mutex_t	print;
+	pthread_t	monitoring;
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }				t_rules;
@@ -69,6 +70,13 @@ void			create_philos_and_forks(t_rules *rules);
 long long	gettime(void);
 void	print_message(char *message, int fd);
 void	print_terminal(t_philo *philo, char *message);
+
+//running.c
+int		grab_forks(t_philo *philo);
+int		eating(t_philo *philo);
+int		sleeping(t_philo *philo);
+int		thinking(t_philo *philo);
+void	*running(void *index);
 
 #endif
 

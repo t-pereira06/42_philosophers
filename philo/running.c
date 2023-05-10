@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:02:57 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/08 15:51:09 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:23:50 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	eating(t_philo *philo)
 	}
 	pthread_mutex_lock(philo->hold_death);
 	print_terminal(philo, EATING);
-	philo->last_meal = get_time();
+	philo->last_meal = gettime();
 	philo->times_eaten++;
 	if (philo->rules->t_each_must_eat >= 0)
 	{
-		if (philo->times_eaten = philo->rules->t_each_must_eat)
+		if (philo->times_eaten == philo->rules->t_each_must_eat)
 			philo->rules->t_each_must_eat++;
 	}
 	usleep(philo->rules->tte * 1000);
@@ -56,6 +56,29 @@ int	eating(t_philo *philo)
 	return (1);
 }
 
+//Function to make philosopher sleep
+int	sleeping(t_philo *philo)
+{
+	if (philo->rules->phi_dead
+		|| philo->rules->count_eat == philo->rules->num_p)
+		return (0);
+	print_terminal(philo, SLEEPING);
+	usleep(philo->rules->tts * 1000);
+	return (1);
+}
+
+//Function to make philosopher think
+int	thinking(t_philo *philo)
+{
+	if (philo->rules->phi_dead
+		|| philo->rules->count_eat == philo->rules->num_p)
+		return (0);
+	print_terminal(philo, THINKING);
+	return (1);
+}
+
+/*Function to run the program, calling the task functions created
+for the philosophers*/
 void	*running(void *index)
 {
 	int	i;
@@ -67,6 +90,19 @@ void	*running(void *index)
 	{
 		pthread_mutex_lock(philo->l_fork);
 		pthread_mutex_lock(philo->r_fork);
-		return ;
+		return NULL;
+	}
+	if(philo->id % 2 == 0)
+		usleep(2000);
+	while (1)
+	{
+		if(grab_forks(philo))
+			return NULL;
+		if(eating(philo))
+			return NULL;
+		if(sleeping(philo))
+			return NULL;
+		if(thinking(philo))
+			return NULL;
 	}
 }

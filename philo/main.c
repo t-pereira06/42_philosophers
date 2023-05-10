@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/08 11:32:17 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:24:45 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	initialize_struct(t_rules *rules, int argc, char **argv)
 	rules->ttd = ft_atoi(argv[2]);
 	rules->tte = ft_atoi(argv[3]);
 	rules->tts = ft_atoi(argv[4]);
-	rules->time_start = get_time();
+	rules->time_start = gettime();
 	rules->count_eat = 0;
 	rules->phi_dead = 0;
 	if (argc == 6)
@@ -72,6 +72,7 @@ void	check_args(int argc, char **argv)
 	}
 }
 
+//Main function of the program
 int	main(int argc, char **argv)
 {
 	t_rules	*rules;

@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:26:01 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/08 11:47:34 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:46:01 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_terminal(t_philo *philo, char *message)
 	if (philo->rules->phi_dead > 0
 		|| philo->rules->count_eat == philo->rules->num_p)
 		return ;
-	time = get_time() - philo->rules->time_start;
+	time = gettime() - philo->rules->time_start;
 	pthread_mutex_lock(&philo->rules->print);
 	printf("%lld %d %s", time, philo->id, message);
 	pthread_mutex_unlock(&philo->rules->print);

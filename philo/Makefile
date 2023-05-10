@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 14:07:55 by tsodre-p          #+#    #+#              #
-#    Updated: 2023/05/03 10:29:56 by tsodre-p         ###   ########.fr        #
+#    Updated: 2023/05/10 10:42:53 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ RM = rm -f
 #CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
-FILES = main.c libft_functions.c creating.c utils.c
+FILES = main.c libft_functions.c creating.c utils.c running.c
 
 OBJ = $(FILES:%.c=%.o)
-FILES_O = main.o libft_functions.o creating.o utils.o
+FILES_O = main.o libft_functions.o creating.o utils.o running.o
 
 all: $(NAME)
 
