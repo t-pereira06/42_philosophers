@@ -3,6 +3,10 @@
 Eat, Sleep, Spaghetti, repeat. This project is about learning how threads work by precisely timing a group of 
 philosophers on when to pick up forks and eat spaghetti without dying from hunger.
 
+## Representation of the philosophers problem
+![An_illustration_of_the_dining_philosophers_problem](https://github.com/t-pereira06/42_philosophers/assets/118270669/b6a00195-734b-4fcd-8de4-9b6ad762a964)
+
+
 ## Rules of the project
 • One or more philosophers sit at a round table.
 There is a large bowl of spaghetti in the middle of the table.
@@ -34,7 +38,7 @@ To compile the program execute:
 ```bash
 $ make
 ```
-After compiling, execute the program, followed by the map:
+After compiling, execute the program, followed by the arguments:
 ```bash
 $ ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
