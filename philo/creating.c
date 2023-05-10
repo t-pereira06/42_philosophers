@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 12:40:04 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:29:23 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	join_threads_and_destroy_mutex(t_rules *rules)
 	int	i;
 
 	i = 0;
-	pthread_join(&rules->monitoring, NULL);
+	pthread_join(rules->monitoring, NULL);
 	while (i++ < rules->num_p)
 		pthread_join(rules->philos[i].philo, NULL);
 	pthread_mutex_destroy(&rules->print);
 	while (i < rules->num_p)
 	{
 		pthread_mutex_destroy(&rules->forks[i]);
-		pthread_mutex_destroy(&rules->philos[i].hold_death);
+		pthread_mutex_destroy(rules->philos[i].hold_death);
 	}
 }
 
