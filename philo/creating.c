@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 11:47:17 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:40:04 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	join_threads_and_destroy_mutex(t_rules *rules)
 		pthread_mutex_destroy(&rules->forks[i]);
 		pthread_mutex_destroy(&rules->philos[i].hold_death);
 	}
-	free (rules->philos);
 }
 
 void	create_philos_and_forks(t_rules *rules)

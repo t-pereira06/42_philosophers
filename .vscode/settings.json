@@ -4,6 +4,7 @@
 		"unistd.h": "c",
 		"philosophers.h": "c",
 		"stdlib.h": "c",
-		"pthread.h": "c"
+		"pthread.h": "c",
+		"time.h": "c"
 	}
 }
