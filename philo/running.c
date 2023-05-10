@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:02:57 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 11:23:50 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:51:28 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	*running(void *index)
 		pthread_mutex_lock(philo->r_fork);
 		return NULL;
 	}
-	if(philo->id % 2 == 0)
-		usleep(2000);
+	if(philo->id % 2 != 0)
+		usleep(1000);
 	while (1)
 	{
 		if(grab_forks(philo))
