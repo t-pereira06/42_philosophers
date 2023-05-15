@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 15:29:23 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:46:18 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_philo	*philosophers(t_rules *rules, pthread_mutex_t *forks)
 		else
 			rules->philos[i].r_fork = &forks[i];
 		rules->philos[i].rules = rules;
+		i++;
 	}
 	return (rules->philos);
 }
@@ -61,7 +62,7 @@ void	create_philos_threads(t_rules *rules)
 		pthread_create(&rules->philos[i].philo, NULL, &running, &rules->philos[i]);
 		i++;
 	}
-	//pthread_create(&rules->monitoring, NULL, &monitoring, rules);
+	pthread_create(&rules->monitoring, NULL, &monitoring, rules);
 }
 
 //Function to join thread and destroy mutexes
@@ -71,13 +72,18 @@ void	join_threads_and_destroy_mutex(t_rules *rules)
 
 	i = 0;
 	pthread_join(rules->monitoring, NULL);
-	while (i++ < rules->num_p)
+	while (i < rules->num_p)
+	{
 		pthread_join(rules->philos[i].philo, NULL);
+		i++;
+	}
 	pthread_mutex_destroy(&rules->print);
+	i = 0;
 	while (i < rules->num_p)
 	{
 		pthread_mutex_destroy(&rules->forks[i]);
 		pthread_mutex_destroy(rules->philos[i].hold_death);
+		i++;
 	}
 }
 

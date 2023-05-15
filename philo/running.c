@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:02:57 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 15:18:26 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:20:39 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,14 @@ int	thinking(t_philo *philo)
 for the philosophers*/
 void	*running(void *index)
 {
-	int	i;
 	t_philo	*philo;
 
-	i = 0;
-	philo = (t_philo *)philo;
+	philo = (t_philo *)index;
 	if (philo->rules->num_p == 1)
 	{
 		pthread_mutex_lock(philo->l_fork);
-		pthread_mutex_lock(philo->r_fork);
+		print_terminal(philo, TAKE_FORK);
+		pthread_mutex_unlock(philo->l_fork);
 		return NULL;
 	}
 	if(philo->id % 2 != 0)

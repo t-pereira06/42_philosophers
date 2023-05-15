@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/10 11:24:45 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:56:09 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,7 @@ int	main(int argc, char **argv)
 	rules = malloc(sizeof(rules));
 	initialize_struct(rules, argc, argv);
 	create_philos_and_forks(rules);
+	free(rules->philos);
+	free(rules->forks);
+	free(rules);
 }
