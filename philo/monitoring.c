@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:03:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/15 10:31:33 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:12:47 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	num_philos_dead(t_rules *rules)
 	i = 0;
 	while (i < rules->num_p)
 	{
-		pthread_mutex_lock(&rules->hold_verification);
+		pthread_mutex_lock(&rules->verification);
 		if ((gettime() - rules->philos[i].last_meal) > rules->ttd)
 		{
 			print_terminal(&rules->philos[i], DIED);
 			rules->phi_dead = 1;
 			return (1);
 		}
-		pthread_mutex_unlock(&rules->hold_verification);
+		pthread_mutex_unlock(&rules->verification);
 		i++;
 	}
 	return (0);
@@ -37,13 +37,15 @@ int	num_philos_dead(t_rules *rules)
 //Check if all philos have eaten
 int	num_philos_eaten(t_rules *rules)
 {
-	pthread_mutex_lock(&rules->hold_verification);
-	if (rules->count_eat == rules->num_p)
+	if (rules->t_each_must_eat == 0)
+		return (0);
+	pthread_mutex_lock(&rules->verification);
+	if (rules->all_ate == rules->num_p)
 	{
-		pthread_mutex_unlock(&rules->hold_verification);
+		pthread_mutex_unlock(&rules->verification);
 		return (1);
 	}
-	pthread_mutex_unlock(&rules->hold_verification);
+	pthread_mutex_unlock(&rules->verification);
 	return (0);
 }
 
