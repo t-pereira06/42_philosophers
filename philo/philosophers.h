@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:35:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:24:47 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:50:03 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <limits.h>
 
 //	Philo outputs
-# define TAKE_FORK "has taken a fork 🍴"
-# define THINKING "is thinking 🤔"
-# define SLEEPING "is sleeping 💤"
-# define EATING "is eating 🍲"
-# define DIED "died ☠️"
+# define TAKE_FORK "has taken a fork"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define EATING "is eating"
+# define DIED "died"
 
 //Philosopher struct
 typedef	struct	philo
@@ -73,6 +73,7 @@ long long	gettime(void);
 void		print_message(char *message, int fd);
 void		print_terminal(t_philo *philo, char *message);
 int			one_philo(t_philo *philo);
+long		ft_atol(char *str);
 
 //running.c
 int		grab_forks(t_philo *philo);

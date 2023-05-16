@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:58 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:39:11 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:55:43 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,23 @@ void	initialize_struct(t_rules *rules, int argc, char **argv)
 //Check how many are passed to the function
 void	check_args(int argc, char **argv)
 {
+	int	i;
+
+	i = 1;
 	if (argc == 5 || argc == 6)
+	{
 		check_number(argv);
+		while (i < argc - 1)
+		{
+			if (ft_atol(argv[i]) > INT_MAX
+				|| ft_atol(argv[i]) < INT_MIN)
+			{
+				write(1, "Number too big!\n", 17);
+				exit(0);
+			}
+			i++;
+		}
+	}
 	else
 	{
 		write(1, "Check number of arguments!\n", 28);
@@ -84,4 +99,5 @@ int	main(int argc, char **argv)
 	free(rules->philos);
 	free(rules->forks);
 	free(rules);
+	return (0);
 }

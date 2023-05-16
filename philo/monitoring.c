@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:03:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:41:51 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:55:01 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ int	num_philos_dead(t_rules *rules)
 	i = 0;
 	while (i < rules->num_p)
 	{
-		pthread_mutex_lock(&rules->verification);
+		pthread_mutex_lock(&rules->philos[i].hold_death);
 		if ((gettime() - rules->philos[i].last_meal) > rules->ttd)
 		{
 			print_terminal(&rules->philos[i], DIED);
+			pthread_mutex_lock(&rules->verification);
 			rules->phi_dead = 1;
+			pthread_mutex_unlock(&rules->verification);
+			pthread_mutex_lock(&rules->philos[i].hold_death);
 			return (1);
 		}
-		pthread_mutex_unlock(&rules->verification);
 		i++;
 	}
 	return (0);

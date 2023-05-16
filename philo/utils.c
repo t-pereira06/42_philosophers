@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:26:01 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:05:22 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:46:34 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,33 @@ void	print_terminal(t_philo *philo, char *message)
 	pthread_mutex_lock(&philo->rules->print);
 	printf("%lld %d %s", time, philo->id, message);
 	pthread_mutex_unlock(&philo->rules->print);
+}
+
+/*Function like atoi but for long numbers.
+Used in check_args*/
+long	ft_atol(char *str)
+{
+	long	n;
+	int		i;
+	int		sign;
+
+	i = 0;
+	n = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+		{
+			sign = -1;
+		}
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * n);
 }
