@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:02:57 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 11:53:45 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:41:30 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 //Function to grab forks to eat
 int	grab_forks(t_philo *philo)
 {
+	print_message("ola", 1);
 	pthread_mutex_lock(&philo->rules->verification);
+	print_message("adeus", 1);
 	if (philo->rules->phi_dead == 1
 		|| philo->rules->all_ate == philo->rules->num_p)
 	{
@@ -55,7 +57,7 @@ int	eating(t_philo *philo)
 	if (philo->rules->t_each_must_eat >= 0)
 	{
 		if (philo->times_eaten == philo->rules->t_each_must_eat)
-			philo->rules->t_each_must_eat++;
+			philo->rules->all_ate++;
 	}
 	usleep(philo->rules->tte * 1000);
 	pthread_mutex_unlock(&philo->hold_death);

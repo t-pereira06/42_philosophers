@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:10:57 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:41:53 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	create_philos_threads(t_rules *rules)
 	while (i < rules->num_p)
 	{
 		pthread_create(&rules->philos[i].philo, NULL, &running, &rules->philos[i]);
-		usleep(100);
+		usleep(2000);
 		i++;
 	}
 	pthread_create(&rules->monitoring, NULL, &monitoring, rules);
