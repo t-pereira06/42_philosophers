@@ -23,10 +23,20 @@ int	grab_forks(t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->rules->verification);
-	pthread_mutex_lock(philo->l_fork);
-	print_terminal(philo, TAKE_FORK);
-	pthread_mutex_lock(philo->r_fork);
-	print_terminal(philo, TAKE_FORK);
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->r_fork);
+		print_terminal(philo, TAKE_FORK);
+		pthread_mutex_lock(philo->l_fork);
+		print_terminal(philo, TAKE_FORK);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->l_fork);
+		print_terminal(philo, TAKE_FORK);
+		pthread_mutex_lock(philo->r_fork);
+		print_terminal(philo, TAKE_FORK);
+	}
 	return (0);
 }
 
@@ -48,11 +58,11 @@ int	eating(t_philo *philo)
 	philo->last_meal = gettime();
 	pthread_mutex_lock(&philo->rules->verification);
 	philo->times_eaten++;
-	if (philo->rules->t_each_must_eat >= 0)
+	if (philo->rules->t_each_must_eat != 0)
 		if (philo->times_eaten == philo->rules->t_each_must_eat)
 			philo->rules->all_ate++;
-	pthread_mutex_unlock(&philo->hold_death);
 	pthread_mutex_unlock(&philo->rules->verification);
+	pthread_mutex_unlock(&philo->hold_death);
 	usleep(philo->rules->tte * 1000);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -98,7 +108,7 @@ void	*running(void *index)
 
 	philo = (t_philo *)index;
 	if(philo->id % 2 == 0)
-		usleep(1000);
+		usleep(5000);
 	while (1)
 	{
 		if (philo->rules->num_p == 1)

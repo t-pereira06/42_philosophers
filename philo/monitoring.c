@@ -65,5 +65,5 @@ void	*monitoring(void *index)
 			return (NULL);
 		if (num_philos_eaten(rules))
 			return (NULL);
-	}
+	}	
 }
