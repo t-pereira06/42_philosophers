@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 12:41:53 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:35:58 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_philo	*philosophers(t_rules *rules, pthread_mutex_t *forks)
 		rules->philos[i].last_meal = gettime();
 		rules->philos[i].times_eaten = 0;
 		rules->philos[i].l_fork = &forks[i];
-		if (i == rules->num_p)
+		if (i == rules->num_p - 1)
 			rules->philos[i].r_fork = &forks[0];
 		else
 			rules->philos[i].r_fork = &forks[i + 1];

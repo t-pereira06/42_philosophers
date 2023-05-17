@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:02:57 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 15:30:59 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:35:40 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ int	grab_forks(t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->rules->verification);
-	if (pthread_mutex_lock(philo->l_fork) != 0)
-		print_message("Failed locking a fork\n", 1);
+	pthread_mutex_lock(philo->l_fork);
 	print_terminal(philo, TAKE_FORK);
-	if (pthread_mutex_lock(philo->r_fork) != 0)
-		print_message("Failed locking a fork\n", 1);
+	pthread_mutex_lock(philo->r_fork);
 	print_terminal(philo, TAKE_FORK);
 	return (0);
 }
@@ -35,7 +33,6 @@ int	grab_forks(t_philo *philo)
 //Function to make philosopher eat
 int	eating(t_philo *philo)
 {
-	print_message("Failed locking a fork\n", 1);
 	pthread_mutex_lock(&philo->rules->verification);
 	if (philo->rules->phi_dead == 1
 		|| (philo->rules->all_ate == philo->rules->num_p))
@@ -54,8 +51,8 @@ int	eating(t_philo *philo)
 	if (philo->rules->t_each_must_eat >= 0)
 		if (philo->times_eaten == philo->rules->t_each_must_eat)
 			philo->rules->all_ate++;
-	pthread_mutex_lock(&philo->rules->verification);
 	pthread_mutex_unlock(&philo->hold_death);
+	pthread_mutex_unlock(&philo->rules->verification);
 	usleep(philo->rules->tte * 1000);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -72,6 +69,7 @@ int	sleeping(t_philo *philo)
 		pthread_mutex_unlock(&philo->rules->verification);
 		return (1);
 	}
+	pthread_mutex_unlock(&philo->rules->verification);
 	print_terminal(philo, SLEEPING);
 	usleep(philo->rules->tts * 1000);
 	return (0);
@@ -85,11 +83,11 @@ int	thinking(t_philo *philo)
 		|| philo->rules->all_ate == philo->rules->num_p)
 	{
 		pthread_mutex_unlock(&philo->rules->verification);
-		return (0);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->rules->verification);
 	print_terminal(philo, THINKING);
-	return (1);
+	return (0);
 }
 
 /*Function to run the program, calling the task functions created

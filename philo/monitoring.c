@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:03:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/16 14:55:01 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:30:01 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	num_philos_dead(t_rules *rules)
 			pthread_mutex_lock(&rules->verification);
 			rules->phi_dead = 1;
 			pthread_mutex_unlock(&rules->verification);
-			pthread_mutex_lock(&rules->philos[i].hold_death);
+			pthread_mutex_unlock(&rules->philos[i].hold_death);
 			return (1);
 		}
+		pthread_mutex_unlock(&rules->philos[i].hold_death);
 		i++;
 	}
 	return (0);
