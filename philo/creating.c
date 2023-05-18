@@ -60,7 +60,8 @@ void	create_philos_threads(t_rules *rules)
 	i = 0;
 	while (i < rules->num_p)
 	{
-		pthread_create(&rules->philos[i].philo, NULL, &running, &rules->philos[i]);
+		pthread_create(&rules->philos[i].philo,
+			NULL, &running, &rules->philos[i]);
 		usleep(2000);
 		i++;
 	}

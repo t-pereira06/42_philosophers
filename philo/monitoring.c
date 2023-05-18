@@ -56,7 +56,7 @@ int	num_philos_eaten(t_rules *rules)
 and if all philos ate*/
 void	*monitoring(void *index)
 {
-	t_rules *rules;
+	t_rules	*rules;
 
 	rules = (t_rules *)index;
 	while (1)

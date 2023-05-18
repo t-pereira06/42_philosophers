@@ -107,8 +107,8 @@ void	*running(void *index)
 	t_philo	*philo;
 
 	philo = (t_philo *)index;
-	if(philo->id % 2 == 0)
-		usleep(5000);
+	if (philo->id % 2 == 0)
+		usleep(2500);
 	while (1)
 	{
 		if (philo->rules->num_p == 1)
@@ -116,16 +116,16 @@ void	*running(void *index)
 			pthread_mutex_lock(philo->l_fork);
 			print_terminal(philo, TAKE_FORK);
 			pthread_mutex_unlock(philo->l_fork);
-			return NULL;
+			return (NULL);
 		}
-		if(grab_forks(philo))
-			return NULL;
-		if(eating(philo))
-			return NULL;
-		if(sleeping(philo))
-			return NULL;
-		if(thinking(philo))
-			return NULL;
+		if (grab_forks(philo))
+			return (NULL);
+		if (eating(philo))
+			return (NULL);
+		if (sleeping(philo))
+			return (NULL);
+		if (thinking(philo))
+			return (NULL);
 	}
 	return (NULL);
 }
