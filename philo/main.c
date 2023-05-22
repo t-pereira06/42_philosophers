@@ -69,7 +69,7 @@ void	check_args(int argc, char **argv)
 	if (argc == 5 || argc == 6)
 	{
 		check_number(argv);
-		while (i < argc - 1)
+		while (i < argc)
 		{
 			if (ft_atol(argv[i]) > INT_MAX
 				|| ft_atol(argv[i]) < INT_MIN)
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 	t_rules	*rules;
 
 	check_args(argc, argv);
-	rules = malloc(sizeof(rules));
+	rules = malloc(sizeof(t_rules));
 	initialize_struct(rules, argc, argv);
 	create_philos_and_forks(rules);
 	free(rules->philos);

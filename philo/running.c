@@ -108,7 +108,7 @@ void	*running(void *index)
 
 	philo = (t_philo *)index;
 	if (philo->id % 2 == 0)
-		usleep(2500);
+		usleep(4000);
 	while (1)
 	{
 		if (philo->rules->num_p == 1)
