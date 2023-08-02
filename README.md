@@ -66,3 +66,7 @@ After executing the program, if you want to clean the object files, execute:
 ```bash
 $ make fclean
 ```
+
+# Grade:
+![Screenshot from 2022-12-07 10-52-55](https://github.com/t-pereira06/42_philosophers/assets/118270669/9c8a1d0e-9f99-4781-b2d1-3a4c1e586324)
+
