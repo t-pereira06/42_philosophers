@@ -1,72 +1,85 @@
-# 42_philosophers
+# philosophers
 
-Eat, Sleep, Spaghetti, repeat. This project is about learning how threads work by precisely timing a group of 
-philosophers on when to pick up forks and eat spaghetti without dying from hunger.
+**Eat, Sleep, Spaghetti, Repeat.** This project teaches you about thread management by simulating the classic "Dining Philosophers" problem, where philosophers must eat spaghetti without starving—all while sharing limited resources.
 
-## Representation of the philosophers problem
-![An_illustration_of_the_dining_philosophers_problem](https://github.com/t-pereira06/42_philosophers/assets/118270669/b6a00195-734b-4fcd-8de4-9b6ad762a964)
+---
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Rules](#rules)
+- [How to Execute](#how-to-execute)
+- [Grade](#grade)
 
-## Rules of the project
-• One or more philosophers sit at a round table.
-There is a large bowl of spaghetti in the middle of the table.
+---
 
-• The philosophers alternatively eat, think, or sleep.
-While they are eating, they are not thinking nor sleeping;
-while thinking, they are not eating nor sleeping;
-and, of course, while sleeping, they are not eating nor thinking.
+## Project Overview
+The "Dining Philosophers" problem illustrates synchronization issues in concurrent programming. Philosophers seated at a round table share forks and must alternate between eating, thinking, and sleeping. Proper thread management ensures no philosopher dies of starvation, and resources are efficiently utilized.
 
-• There are also forks on the table. There are as many forks as philosophers.
+### Representation of the Problem
+![An illustration of the dining philosophers problem](https://github.com/t-pereira06/42_philosophers/assets/118270669/b6a00195-734b-4fcd-8de4-9b6ad762a964)
 
-• Because serving and eating spaghetti with only one fork is very inconvenient, a
-philosopher takes their right and their left forks to eat, one in each hand.
+---
 
-• When a philosopher has finished eating, they put their forks back on the table and
-start sleeping. Once awake, they start thinking again. The simulation stops when
-a philosopher dies of starvation.
+## Rules
 
-• Every philosopher needs to eat and should never starve.
+- Philosophers sit at a round table with a bowl of spaghetti in the center.
+- Philosophers alternate between three states:
+  - **Eating:** Consumes spaghetti using two forks.
+  - **Thinking:** Does not interact with forks or spaghetti.
+  - **Sleeping:** Resting after eating.
+- Forks are shared between philosophers. There are as many forks as philosophers.
+- To eat, a philosopher must hold the fork on their left and the fork on their right.
+- After eating, a philosopher returns the forks to the table and sleeps before thinking again.
+- The simulation ends when:
+  - A philosopher dies of starvation.
+  - (Optional) All philosophers have eaten a specified number of times.
 
-• Philosophers don’t speak with each other.
+### Additional Rules
+- Every philosopher must eat and avoid starvation.
+- Philosophers do not communicate with each other.
+- A philosopher does not know if another is about to starve.
+- Philosophers should never die if managed properly.
 
-• Philosophers don’t know if another philosopher is about to die.
+---
 
-• No need to say that philosophers should avoid dying!
+## How to Execute
 
-## How To Execute The Program
-To compile the program execute:
+### Compilation
+To compile the program, run:
 ```bash
-$ make
-```
-After compiling, execute the program, followed by the arguments:
-```bash
-$ ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
-
-- number_of_philosophers: The number of philosophers and also the number of forks.
-
-- time_to_die (in milliseconds): If a philosopher didn’t start eating time_to_die
-milliseconds since the beginning of their last meal or the beginning of the simulation, they die.
-
-- time_to_eat (in milliseconds): The time it takes for a philosopher to eat. 
-During that time, they will need to hold two forks.
-
-- time_to_sleep (in milliseconds): The time a philosopher will spend sleeping.
-
-- number_of_times_each_philosopher_must_eat (optional argument): If all
-philosophers have eaten at least number_of_times_each_philosopher_must_eat
-times, the simulation stops. If not specified, the simulation stops when a
-philosopher dies.
-
-- Each philosopher has a number ranging from 1 to number_of_philosophers.
-
-- Philosopher number 1 sits next to philosopher number number_of_philosophers.
-Any other philosopher number N sits between philosopher number N - 1 and philosopher number N + 1
-```
-After executing the program, if you want to clean the object files, execute:
-```bash
-$ make fclean
+make
 ```
 
-# Grade:
-![Screenshot from 2022-12-07 10-52-55](https://github.com/t-pereira06/42_philosophers/assets/118270669/9c8a1d0e-9f99-4781-b2d1-3a4c1e586324)
+### Execution
+After compiling, execute the program with the following arguments:
+```bash
+./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
+```
 
+### Arguments
+1. **`number_of_philosophers`**: Total number of philosophers and forks.
+2. **`time_to_die` (in ms)**: Time a philosopher can go without eating before dying.
+3. **`time_to_eat` (in ms)**: Time it takes a philosopher to eat (requires holding two forks).
+4. **`time_to_sleep` (in ms)**: Time a philosopher spends sleeping after eating.
+5. **`number_of_times_each_philosopher_must_eat` (optional)**: The simulation ends when all philosophers eat this many times. If omitted, the simulation ends when a philosopher dies.
+
+### Example
+To run a simulation with 5 philosophers:
+```bash
+$ ./philo 5 800 200 200
+```
+This creates 5 philosophers who:
+- Die if they don’t eat within 800 ms.
+- Take 200 ms to eat.
+- Sleep for 200 ms after eating.
+
+To clean up the object files after execution, use:
+```bash
+make fclean
+```
+
+---
+
+## Grade
+
+![Grade Screenshot](https://github.com/t-pereira06/42_philosophers/assets/118270669/9c8a1d0e-9f99-4781-b2d1-3a4c1e586324)
