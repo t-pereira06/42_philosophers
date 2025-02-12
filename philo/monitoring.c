@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:03:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/17 12:30:01 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:57:13 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ void	*monitoring(void *index)
 			return (NULL);
 		if (num_philos_eaten(rules))
 			return (NULL);
-	}	
+	}
 }
